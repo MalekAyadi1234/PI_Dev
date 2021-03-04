@@ -24,7 +24,7 @@
         "version": "3.1.1"
     },
     "doctrine/dbal": {
-        "version": "2.10.4"
+        "version": "2.12.1"
     },
     "doctrine/doctrine-bundle": {
         "version": "2.0",
@@ -85,13 +85,13 @@
         "version": "v1.0.3"
     },
     "laminas/laminas-code": {
-        "version": "3.4.1"
+        "version": "4.0.0"
     },
     "laminas/laminas-eventmanager": {
-        "version": "3.2.1"
+        "version": "3.3.0"
     },
     "laminas/laminas-zendframework-bridge": {
-        "version": "1.1.1"
+        "version": "1.2.0"
     },
     "monolog/monolog": {
         "version": "1.26.0"
@@ -142,7 +142,7 @@
         "version": "v4.4.19"
     },
     "symfony/cache-contracts": {
-        "version": "v1.1.10"
+        "version": "v2.2.0"
     },
     "symfony/config": {
         "version": "v4.4.19"
@@ -254,7 +254,7 @@
         "version": "v4.4.19"
     },
     "symfony/http-client-contracts": {
-        "version": "v1.1.10"
+        "version": "v2.3.1"
     },
     "symfony/http-foundation": {
         "version": "v4.4.19"
@@ -412,7 +412,7 @@
         "version": "v1.0.4"
     },
     "symfony/service-contracts": {
-        "version": "v1.1.9"
+        "version": "v2.2.0"
     },
     "symfony/stopwatch": {
         "version": "v4.4.19"
@@ -434,7 +434,7 @@
         ]
     },
     "symfony/translation-contracts": {
-        "version": "v1.1.10"
+        "version": "v2.3.0"
     },
     "symfony/twig-bridge": {
         "version": "v4.4.19"
@@ -508,7 +508,7 @@
         "version": "v3.3.0"
     },
     "twig/twig": {
-        "version": "v2.13.1"
+        "version": "v3.3.0"
     },
     "webmozart/assert": {
         "version": "1.9.1"
