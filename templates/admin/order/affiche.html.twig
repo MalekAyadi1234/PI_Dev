@@ -1,0 +1,65 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">commande Table</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table id="example" class="display expandable-table" style="width:100%">
+                                        <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Nom client</th>
+                                            <th>Prenom Client</th>
+                                            <th>Date </th>
+                                            <th>Statue</th>
+
+
+
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr {% for p in order %}>
+                                            <td>{{ p.id }}</td>
+                                            <td>{{ p.user.firstname}}</td>
+                                            <td>{{ p.user.lastname }}</td>
+                                            <td>{{ p.createdAt|date("m/d/Y") }}</td>
+                                            <td>{{ p.isPaid}}</td>
+
+
+
+
+
+                                            <td><a href="{{ path('confirmerOrder',{'firstname': p.user.firstname,'lastname': p.user.lastname ,'id':p.id}) }}">Confirmer</a> </td>
+                                            <td><a href="{{ path('deleteorder',{'id': p.id }) }}">Delete</a> </td>
+
+
+
+                                        </tr {% endfor %}>
+                                        statistique
+
+
+                                        </tbody>
+                                    </table>
+
+                                    <td><a href="{{ path('statistique')}}">Statistiques</a> </td>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

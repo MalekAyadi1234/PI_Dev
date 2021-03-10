@@ -1,0 +1,35 @@
+
+{% block content %}
+    <h1 align="center">Liste BonPlans</h1><hr>
+
+                                    <table id="example" class="display expandable-table" style="width:100%">
+                                        <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Nom Produit</th>
+                                            <th>Budge</th>
+                                            <th>description</th>
+                                            <th>categorie</th>
+
+
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+                                         {% for p in product %}
+                                             <tr>
+                                            <td>{{ p.id }}</td>
+                                            <td>{{ p.name }}</td>
+                                            <td>{{ p.prix }}</td>
+                                            <td>{{ p.description }}</td>
+                                            <td>{{ p.category.name }}</td>
+
+
+                                        </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+
+
+{% endblock %}
