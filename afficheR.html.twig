@@ -1,0 +1,160 @@
+{% extends 'front.html.twig' %}
+{% block body %}
+
+    <div class="container" id="entitiesNavv">
+        <div class="listing_header">
+            <h5>Vos Reservation</h5>
+
+            <div class="layout-switcher">
+                <button><a href="{{ path('ajouterR') }}"> ADD </a></button>
+            </div>
+        </div>
+
+        {% for c in Reservation %}
+        <div class="listview show_listing">
+           {#  <div class="listing_wrap">
+                <div class="listing_img">
+                    <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
+                    <div class="listing_cate">
+                        <span class="cate_icon"><a href="#"><img src="assets/images/category-icon4.png" alt="icon-img"></a></span>
+                        <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
+                    </div>
+                    <a href="#"><img src="assets/images/listing_img4.jpg" alt="image"></a>
+                </div>
+                <div class="listing_info">
+                    <div class="post_category">
+                        <a href="#">Beauty &amp; Spas</a>
+                    </div>
+                    <h4><a href="#">Laisa Spa Center</a></h4>
+                    <p>Best Pool &amp; Spa Professionals in Laisa</p>
+
+                    <div class="listing_review_info">
+                        <p><span class="review_score">4.0/5</span>
+                            <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i>
+                            <i class="fa fa-star active"></i> <i class="fa fa-star"></i>
+                            (5 Reviews) </p>
+                        <p class="listing_map_m"><i class="fa fa-map-marker"></i> Los Angeles</p>
+                    </div>
+                </div>
+            </div>
+        </div>#}
+
+            <table border="1">
+                <tr>
+                    <th>Id</th>
+                    <th>IdR</th>
+                    <th>Cin</th>
+                    <th>email</th>
+                    <th>Prix</th>
+                    <th>DateVol</th>
+                    <th>NumP</th>
+                    <th>Vol</th>
+                </tr>
+                <tr >
+                    <th>{{ c.id }}</th>
+                    <th>{{ c.idR }}</th>
+                    <th>{{ c.cin }}</th>
+                    <th>{{ c.email }}</th>
+                    <th>{{ c.prix }}</th>
+                    <th>{{ c.dateV|date(    'Y-m-d') }}</th>
+                    <th>{{ c.numP }}</th>
+                    <th>{{  c.vol.idV }}</th>
+                    <th><a href="{{ path('d',{'id':c.id }) }}"> Delete</a> </th>
+                    <th><a href="{{ path('updateR',{'id':c.id }) }}">Update</a> </th>
+
+                </tr >
+            </table>
+
+    </div>
+
+        {% endfor %}
+        </div>
+
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            var searchRequest = null;
+            $(".js-user-search").keyup(function () {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#entitiesNavv").html('');
+                console.log(value.length)
+
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = $.ajax({
+                    type: "GET",
+                    url: "{{ path('search_ajax') }}",
+                    data: {
+                        'q': value
+                    },
+                    dataType: "text",
+                    success: function (msg) {
+                        //we need to check if the value is the same
+                        if (value == $(that).val()) {
+                            var result = JSON.parse(msg);
+                            $.each(result, function (key, arr) {
+                                $.each(arr, function (id, value) {
+                                    if (key == 'entities') {
+                                        if (id != 'error') {
+
+                                            var IdR=value[0];
+                                            var cin=value[1];
+                                            var prix=value[2];
+                                            var id=value[3];
+                                            var dateV=value[4]['date'];
+                                            var nump=value[5];
+                                            var email=value[6];
+                                            entitySelector.append(
+                                                '<div class="col-md-4 grid_view show_listing">'
+                                                +'<table border="0">'
+                                                +'<tr>'
+                                                + '  <th>IdR</th>'
+                                                +  '<th>cin</th>'
+                                                +   '<th>prix</th>'
+                                                + ' <th>id</th>'
+                                                +  '<th>datev</th>'
+                                                +   '<th>numP</th>'
+                                                +   '<th>email</th>'
+                                                +  '</tr>'
+                                                + '<tr >'
+
+
+                                                +  '<th>'+IdR+'</th>'
+                                                +   '<th>'+cin+'</th>'
+                                                +     '<th>'+prix+'</th>'
+                                                +  '<th>'+id+'</th>'
+                                                +   '<th>'+dateV+'</th>'
+                                                +     '<th>'+nump+'</th>'
+                                                +     '<th>'+email+'</th>'
+                                                +   '</tr >'
+                                                +   ' </table>'
+
+                                                +   '</div>'
+                                                +'</div>'
+
+                                            );
+
+
+
+
+
+
+                                        } else {
+                                            entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                        }
+                                    }
+                                });
+                            });
+
+
+                        }
+                    }
+                });
+
+            });
+        });
+    </script>
+
+{% endblock %}

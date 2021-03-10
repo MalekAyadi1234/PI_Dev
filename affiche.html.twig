@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <button><a  href="{{ path('ajouter') }}"> ADD <i class="fa fa-align-justify"></i></a></button>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>IdV</th>
+        <th>Aero Depart</th>
+        <th>Aero Arrive</th>
+        <th>placeD</th>
+        <th>Date Depart</th>
+        <th>Date Arrive</th>
+
+    </tr>
+    <tr {% for c in vol %}>
+        <th>{{ c.id }}</th>
+        <th>{{ c.idV }}</th>
+        <th>{{ c.aeroD }}</th>
+        <th>{{ c.aeroA }}</th>
+        <th>{{ c.placeD }}</th>
+        <th>{{ c.dateD|date('Y-m-d') }}</th>
+        <th>{{ c.dateA|date('Y-m-d') }}</th>
+        <th><a href="{{ path('dR',{'id': c.id}) }}"> Delete</a> </th>
+        <th><a href="{{ path('update',{'id':c.id }) }}">Update</a> </th>
+    </tr {% endfor %}>
+</table>
+{% endblock body %}
+
+
